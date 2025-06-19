@@ -1,5 +1,5 @@
 const {REST, Routes} = require('discord.js');
-const {token, clientId} = require('./config.json');
+const {token, clientId} = require('./.gitignore/config.json');
 
 // Todos los comandos a registrar
 const commands = [
@@ -62,6 +62,18 @@ const commands = [
                 {name:'League of Legend', value:'leagueoflegend'}
             ]
         }]
+    },
+    {
+        name: 'musicai',
+        description: 'Busca música en Spotify basada en tu estado de ánimo',
+        options: [
+            {
+                type: 3, // Tipo STRING
+                name: 'mood',
+                description: '¿Cuál es tu estado de ánimo?',
+                required: true
+            }
+        ]
     }
 ];
 
