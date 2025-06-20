@@ -5,10 +5,10 @@ const {GoogleGenerativeAI} = require("@google/generative-ai");
 
 module.exports = {
     data : new SlashCommandBuilder()
-        .setName('musicai')
-        .setDescription('Search something on spotify based on your mood!')
+        .setName('pandai')
+        .setDescription('Ask to the AI from Discord!!')
         .addStringOption(option => 
-            option.setName('mood')
+            option.setName('question')
             .setDescription('Cuál es tu mood?')
             .setRequired(true)),
     async execute(interaction){
@@ -21,8 +21,8 @@ module.exports = {
         });
         try{
             await interaction.deferReply();
-            const mood = interaction.options.getString('mood');
-            const prompt = `${mood}`
+            const question = interaction.options.getString('question');
+            const prompt = `${question}`
 
             if(!prompt){
                 throw new Error('El prompt no puede estar vacio');
@@ -40,8 +40,8 @@ module.exports = {
 }
         }
         catch (error) {
-            console.error('Error al obtener la música:', error);
-            await interaction.reply('❌ ¡Vaya! Hubo un error al obtener la música. Inténtalo de nuevo más tarde.');
+            console.error('Error al obtener la respuesta:', error);
+            await interaction.reply('❌ ¡Vaya! Hubo un error al obtener la respuesta. Inténtalo de nuevo más tarde.');
         }
     }
 }

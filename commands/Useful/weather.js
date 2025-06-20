@@ -12,16 +12,21 @@ module.exports = {
             .setRequired(true)),
     async execute(interaction){
         try{
+            //Esperar la respuesta del usuario
             const ciudad = interaction.options.getString('ciudad');
+            //API KEY 
             const apiKey = process.env.WEATHER_API_KEY; // Asegúrate de tener tu API key en un archivo .env
+            //Llamada a la API de OpenWeatherMap
             const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}`)
-
+            //Datos que obtendremos de la API
             const {name,weather,main} = response.data;
+            // Convertir la temperatura de Kelvin a Celsius
             const calctemp = (main.temp - 273.15);
             const temp = calctemp.toFixed(2) // Convertir de Kelvin a Celsius
 
+            // Embed para mostrar el clima con un formato amigable
             const embed = new EmbedBuilder()
-                .setTitle(`Clima en ${name}`)
+                .setTitle(`Clima en ${name}`) 
                 .setColor(0x3498db)
                 .addFields(
                     {name:'Temperatura', value: `${temp}°C`, inline:true},

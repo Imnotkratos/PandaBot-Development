@@ -1,5 +1,16 @@
 const {REST, Routes} = require('discord.js');
-const {token, clientId} = require('./.gitignore/config.json');
+require('dotenv').config();
+
+// 1. Validación del token
+if (!process.env.TOKEN) {
+    console.error('❌ ERROR: No se encontró TOKEN en .env');
+    process.exit(1);
+}
+// 2. Validación del clientId
+if (!process.env.CLIENT_ID){
+    console.error('❌ ERROR: No se encontró clientID en .env');
+    process.exit(1);
+}
 
 // Todos los comandos a registrar
 const commands = [
@@ -64,8 +75,8 @@ const commands = [
         }]
     },
     {
-        name: 'musicai',
-        description: 'Busca música en Spotify basada en tu estado de ánimo',
+        name: 'music_ai',
+        description: 'Recomienda música, películas, actividades, etc basadas en tu mood!',
         options: [
             {
                 type: 3, // Tipo STRING
@@ -74,11 +85,23 @@ const commands = [
                 required: true
             }
         ]
+    },
+    {
+        name: 'pandai',
+        description: 'Ask to the AI from Discord!!',
+        options: [
+            {
+                type: 3, // Tipo STRING
+                name: 'question',
+                description: '¿Cuál es tu pregunta?',
+                required: true
+            }
+        ]
     }
 ];
 
 // Crear y configurar instancia REST
-const rest = new REST({version: '10'}).setToken(token);
+const rest = new REST({version: '10'}).setToken(process.env.TOKEN);
 
 // Registrar comandos
 (async () => {
@@ -86,7 +109,7 @@ const rest = new REST({version: '10'}).setToken(token);
         console.log('⌛ Registrando comandos...');
         
         await rest.put(
-            Routes.applicationCommands(clientId),
+            Routes.applicationCommands(process.env.CLIENT_ID),
             { body: commands }
         );
         
