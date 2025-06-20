@@ -1,7 +1,7 @@
 # Política de Seguridad
 
 ## Aviso Legal
-© 2023 Stefano Saldarriaga. Todos los derechos reservados.  
+© 2025 Stefano Saldarriaga. Todos los derechos reservados.  
 Este proyecto es de código cerrado y propiedad exclusiva de su autor.  
 Queda prohibida cualquier modificación, distribución o uso comercial sin autorización expresa.
 
