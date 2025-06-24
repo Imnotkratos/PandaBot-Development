@@ -31,7 +31,9 @@ module.exports = {
             const mood = interaction.options.getString('mood');
 
             // 3. Usar IA para generar términos de búsqueda más precisos
-            const searchPrompt = `Dame 3 palabras clave específicas para buscar playlists en Spotify que coincidan con el estado de ánimo o lo que quiero hacer "${mood}". Devuélvelas en formato: palabra1,palabra2,palabra3`;
+            const searchPrompt = `Dame 3 palabras clave específicas para buscar playlists en Spotify 
+            que coincidan con el estado de ánimo o lo que quiero hacer "${mood}". 
+            Devuélvelas en formato: palabra1,palabra2,palabra3`;
             
             const searchTerms = await model.generateContent(searchPrompt);
             const keywords = (await searchTerms.response).text().trim().split(',');
@@ -49,7 +51,7 @@ module.exports = {
             }
 
             // Eliminar duplicados
-            playlistUrls = [...new Set(playlistUrls)].slice(0, 5);
+            playlistUrls = [...new Set(playlistUrls)].slice(0, 2);
 
             if (playlistUrls.length === 0) {
                 return await interaction.editReply(`❌ No encontré playlists para "${mood}". Prueba con otro estado de ánimo.`);

@@ -97,7 +97,7 @@ const commands = [
                 required: true
             }
         ]
-    }
+    },
 ];
 
 // Crear y configurar instancia REST
